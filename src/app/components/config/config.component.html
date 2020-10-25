@@ -1,16 +1,30 @@
 <mat-card class="mt-5 bg-dark">
   <mat-card-content class="grid-container-add">
-    <button
-      mat-fab
-      color="warn"
-      class="grid-content mat-icon-padding-center"
-      (click)="addLanguage()"
-    >
-      <mat-icon class="material-icons-round">add_circle</mat-icon>
-    </button>
+    <div>
+      <button
+        mat-fab
+        color="warn"
+        class="grid-content mat-icon-padding-center"
+        (click)="addLanguage()"
+      >
+        <mat-icon class="material-icons-round">add_circle</mat-icon>
+      </button>
+      <button
+        mat-fab
+        [ngClass]="{
+          'translation-origin-on': newOriginLanguage,
+          'translation-origin-off': !newOriginLanguage
+        }"
+        class="row grid-content mat-icon-padding-center mat-raised-button show-translate-button-mobile ml-5"
+        (click)="changeOriginLanguageValue()"
+        matTooltip="Set as origin language"
+      >
+        <mat-icon class="material-icons-round">g_translate</mat-icon>
+      </button>
+    </div>
 
     <mat-form-field class="bg-light border-radius grid-content">
-      <mat-label>Language code</mat-label>
+      <mat-label>Code</mat-label>
       <input
         matInput
         placeholder="Ex. en"
@@ -19,7 +33,7 @@
       />
     </mat-form-field>
     <mat-form-field class="bg-light border-radius grid-content">
-      <mat-label>Language to show</mat-label>
+      <mat-label>Description</mat-label>
       <input
         matInput
         placeholder="Ex. English"
@@ -34,7 +48,7 @@
         'translation-origin-on': newOriginLanguage,
         'translation-origin-off': !newOriginLanguage
       }"
-      class="row grid-content mat-icon-padding-center mat-raised-button"
+      class="row grid-content mat-icon-padding-center mat-raised-button show-translate-button-full"
       (click)="changeOriginLanguageValue()"
       matTooltip="Set as origin language"
     >

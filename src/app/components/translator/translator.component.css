@@ -1,5 +1,6 @@
 .textarea {
   resize: none;
+  border-color: black;
 }
 
 .move-button {
@@ -11,6 +12,36 @@
   grid-template-columns: max-content 15em auto max-content;
   grid-gap: 10px;
   align-items: center;
+}
+
+.show-move-button-mobile {
+  display: none;
+}
+.show-move-button-full {
+  display: inline;
+}
+
+@media screen and (max-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 5em auto;
+  }
+  .language-desc {
+    width: 3em;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 20px;
+  }
+  .show-move-button-mobile {
+    display: inline;
+  }
+  .show-move-button-full {
+    display: none;
+  }
+  .grid-content {
+    padding: 2px 2px;
+    padding-left: 2px;
+  }
 }
 
 .grid-content {

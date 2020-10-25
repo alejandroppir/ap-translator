@@ -41,9 +41,30 @@
 
 .grid-container-add {
   display: grid;
-  grid-template-columns: max-content 15em auto max-content;
+  grid-template-columns: max-content 5em auto max-content;
   grid-gap: 10px;
   align-items: center;
+}
+@media screen and (max-width: 600px) {
+  .grid-container-add {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+    align-items: center;
+  }
+  .show-translate-button-full {
+    display: none !important;
+  }
+  .show-translate-button-mobile {
+    display: inline !important;
+  }
+}
+
+.show-translate-button-full {
+  display: inline;
+}
+.show-translate-button-mobile {
+  display: none;
 }
 
 .grid-content {

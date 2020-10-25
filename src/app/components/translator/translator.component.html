@@ -31,6 +31,14 @@
         >
           <mat-icon class="material-icons-round">content_copy</mat-icon>
         </button>
+        <button
+          mat-fab
+          color="warn"
+          class="move-button grid-content center mat-icon-padding-center show-move-button-mobile"
+          cdkDragHandle
+        >
+          <mat-icon class="material-icons-round">unfold_more</mat-icon>
+        </button>
 
         <span class="text-left grid-content language-desc">
           {{ language.languageDesc | uppercase }}
@@ -51,7 +59,7 @@
         <button
           mat-fab
           color="warn"
-          class="move-button grid-content center mat-icon-padding-center"
+          class="move-button grid-content center mat-icon-padding-center show-move-button-full"
           cdkDragHandle
         >
           <mat-icon class="material-icons-round">unfold_more</mat-icon>

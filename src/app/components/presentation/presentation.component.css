@@ -1,3 +1,8 @@
 .presentation-text {
   color: whitesmoke;
 }
+@media screen and (max-width: 600px) {
+  .mat-catd-small {
+    padding: 4px 0 !important;
+  }
+}
