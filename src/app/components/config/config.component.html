@@ -1,0 +1,83 @@
+<mat-card class="mt-5 bg-dark">
+  <mat-card-content class="grid-container-add">
+    <button
+      mat-fab
+      color="warn"
+      class="grid-content mat-icon-padding-center"
+      (click)="addLanguage()"
+    >
+      <mat-icon class="material-icons-round">add_circle</mat-icon>
+    </button>
+
+    <mat-form-field class="bg-light border-radius grid-content">
+      <mat-label>Language code</mat-label>
+      <input
+        matInput
+        placeholder="Ex. en"
+        #languageId
+        [(ngModel)]="newLanguageId"
+      />
+    </mat-form-field>
+    <mat-form-field class="bg-light border-radius grid-content">
+      <mat-label>Language to show</mat-label>
+      <input
+        matInput
+        placeholder="Ex. English"
+        #languageDesc
+        [(ngModel)]="newLanguageDesc"
+      />
+    </mat-form-field>
+
+    <button
+      mat-fab
+      [ngClass]="{
+        'translation-origin-on': newOriginLanguage,
+        'translation-origin-off': !newOriginLanguage
+      }"
+      class="row grid-content mat-icon-padding-center mat-raised-button"
+      (click)="changeOriginLanguageValue()"
+      matTooltip="Set as origin language"
+    >
+      <mat-icon class="material-icons-round">g_translate</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="mt-5 bg-dark">
+  <mat-card-content>
+    <ul class="list-group" cdkDropList (cdkDropListDropped)="drop($event)">
+      <li
+        class="list-group-item grid-container-list"
+        *ngFor="let language of languages; index as i"
+        cdkDrag
+        cdkDragLockAxis="y"
+      >
+        <button
+          mat-fab
+          color="warn"
+          class="grid-content mat-icon-padding-center"
+        >
+          <mat-icon
+            class="material-icons-round"
+            (click)="deleteLanguage(language.languageId)"
+            >delete_forever</mat-icon
+          >
+        </button>
+        <span class="grid-content language-desc">
+          {{ language.languageDesc | uppercase }}
+        </span>
+        <button
+          mat-fab
+          [ngClass]="{
+            'translation-origin-on': language.originLanguage,
+            'translation-origin-off': !language.originLanguage
+          }"
+          class="grid-content mat-icon-padding-center"
+          (click)="setThisLanguageAsOrigin(i)"
+        >
+          <mat-icon class="material-icons-round">g_translate</mat-icon>
+        </button>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

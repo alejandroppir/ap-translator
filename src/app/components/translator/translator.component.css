@@ -1,0 +1,52 @@
+.textarea {
+  resize: none;
+}
+
+.move-button {
+  cursor: move;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: max-content 15em auto max-content;
+  grid-gap: 10px;
+  align-items: center;
+}
+
+.grid-content {
+  padding: 10px 5px;
+  padding-left: 5px;
+}
+
+.language-desc {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 30px;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.mat-icon-padding-center {
+  padding: 0 0;
+}
+
+.list-group {
+  padding-top: 10px;
+}
+
+.translation-origin-off {
+  color: gray;
+}
+.translation-origin-on {
+  color: red;
+}
+.copy-button {
+  background-color: lightgreen;
+}
+
+.size-24 {
+  transform: scale(2);
+}

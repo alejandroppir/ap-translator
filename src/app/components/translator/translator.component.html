@@ -1,0 +1,62 @@
+<mat-card class="mt-5 bg-dark text-center">
+  <mat-card-content>
+    <button mat-button class="bg-light" (click)="translate()">
+      <mat-icon class="material-icons-round">g_translate</mat-icon>
+    </button>
+    <br />
+    <ul class="list-group" cdkDropList (cdkDropListDropped)="drop($event)">
+      <li
+        class="list-group-item grid-container"
+        *ngFor="let language of languages"
+        cdkDrag
+        cdkDragLockAxis="y"
+        #languagesElement
+        [ngClass]="{ 'bg-secondary': !language.originLanguage }"
+      >
+        <!-- <mat-icon
+          class="material-icons-round size-24"
+          [ngClass]="{
+            'translation-origin-on disabled':
+              translator.language.originLanguage,
+            'translation-origin-off disabled': !translator.language
+              .originLanguage
+          }"
+          >g_translate</mat-icon
+        > -->
+        <button
+          mat-fab
+          class="grid-content center mat-icon-padding-center copy-button"
+          cdkDragHandle
+          [cdkCopyToClipboard]="language.translation"
+        >
+          <mat-icon class="material-icons-round">content_copy</mat-icon>
+        </button>
+
+        <span class="text-left grid-content language-desc">
+          {{ language.languageDesc | uppercase }}
+        </span>
+        <textarea
+          md-maxlength="150"
+          rows="5"
+          md-select-on-focus
+          class="textarea grid-content text-left"
+          [(ngModel)]="language.translation"
+          [readonly]="!language.originLanguage"
+          [ngClass]="{ 'bg-secondary': !language.originLanguage }"
+          (blur)="saveOnLocalStorage()"
+        >
+          {{ language.translation }}
+          </textarea
+        >
+        <button
+          mat-fab
+          color="warn"
+          class="move-button grid-content center mat-icon-padding-center"
+          cdkDragHandle
+        >
+          <mat-icon class="material-icons-round">unfold_more</mat-icon>
+        </button>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>
