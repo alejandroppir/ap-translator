@@ -13,10 +13,13 @@ import { Language } from '../../shared/language';
 @Injectable()
 export class TranslatorComponent {
   @ViewChildren('languagesElement') list: any;
-  _languages: Language[] = [];
+  private _languages: Language[] = [];
   private ORIGIN_LANGUAGES_INCORRECT =
     'The origin languages ​​are not correct. Check them and try again';
   private EMPTY_LANGUAGES = 'There are no languages';
+
+  dragDisabled = false;
+
   constructor(
     private _languageService: LanguageStorageService,
     private _translatorService: TranslatorService
@@ -56,6 +59,7 @@ export class TranslatorComponent {
     this._languageService.setLanguagesInLocalStorage(this._languages);
   }
   saveOnLocalStorage() {
+    this.dragDisabled = false;
     this._languageService.setLanguagesInLocalStorage(this.languages);
   }
 }

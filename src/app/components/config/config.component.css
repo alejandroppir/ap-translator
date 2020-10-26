@@ -58,6 +58,12 @@
   .show-translate-button-mobile {
     display: inline !important;
   }
+  .language-desc {
+    width: 4em;
+    white-space: nowrap;
+    overflow-x: hidden;
+    padding-top: 2px;
+  }
 }
 
 .show-translate-button-full {

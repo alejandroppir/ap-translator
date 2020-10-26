@@ -11,28 +11,21 @@
         cdkDrag
         cdkDragLockAxis="y"
         #languagesElement
+        [cdkDragDisabled]="dragDisabled"
         [ngClass]="{ 'bg-secondary': !language.originLanguage }"
       >
-        <button
-          mat-fab
-          class="grid-content center mat-icon-padding-center copy-button"
-          cdkDragHandle
-          [cdkCopyToClipboard]="language.translation"
-        >
-          <mat-icon class="material-icons-round">content_copy</mat-icon>
-        </button>
-        <button
-          mat-fab
-          color="warn"
-          class="move-button grid-content center mat-icon-padding-center show-move-button-mobile"
-          cdkDragHandle
-        >
-          <mat-icon class="material-icons-round">unfold_more</mat-icon>
-        </button>
-
-        <span class="text-left grid-content language-desc">
-          {{ language.languageDesc | uppercase }}
-        </span>
+        <div class="grid-content text-left">
+          <button
+            mat-fab
+            class="copy-button"
+            [cdkCopyToClipboard]="language.translation"
+          >
+            <mat-icon class="material-icons-round">content_copy</mat-icon>
+          </button>
+          <span class="language-desc">
+            {{ language.languageDesc | uppercase }}
+          </span>
+        </div>
         <textarea
           md-maxlength="150"
           rows="5"
@@ -42,18 +35,11 @@
           [readonly]="!language.originLanguage"
           [ngClass]="{ 'bg-secondary': !language.originLanguage }"
           (blur)="saveOnLocalStorage()"
+          (focus)="dragDisabled = true"
         >
           {{ language.translation }}
           </textarea
         >
-        <button
-          mat-fab
-          color="warn"
-          class="move-button grid-content center mat-icon-padding-center show-move-button-full"
-          cdkDragHandle
-        >
-          <mat-icon class="material-icons-round">unfold_more</mat-icon>
-        </button>
       </li>
     </ul>
   </mat-card-content>
