@@ -41,7 +41,7 @@ export class ConfigComponent implements OnInit {
       return;
     }
     if (
-      this.languages.map((l) => l.languageId).indexOf(this.newLanguageId) >= 1
+      this.languages.map((l) => l.languageId).indexOf(this.newLanguageId) >= 0
     ) {
       alert(this.DUPLICATED_PARAMETERS);
       return;

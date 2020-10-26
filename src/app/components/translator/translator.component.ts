@@ -14,7 +14,9 @@ import { Language } from '../../shared/language';
 export class TranslatorComponent {
   @ViewChildren('languagesElement') list: any;
   _languages: Language[] = [];
-
+  private ORIGIN_LANGUAGES_INCORRECT =
+    'The origin languages ​​are not correct. Check them and try again';
+  private EMPTY_LANGUAGES = 'There are no languages';
   constructor(
     private _languageService: LanguageStorageService,
     private _translatorService: TranslatorService
@@ -30,6 +32,19 @@ export class TranslatorComponent {
   }
 
   translate() {
+    if (this.languages.length < 1) {
+      alert(this.EMPTY_LANGUAGES);
+      return;
+    }
+    const languagesOrigin: Language[] = this.languages.filter(
+      (e) => e.originLanguage
+    );
+
+    if (languagesOrigin.length != 1) {
+      alert(this.ORIGIN_LANGUAGES_INCORRECT);
+      return;
+    }
+
     this.languages = this._translatorService.translate(this.languages);
   }
 
