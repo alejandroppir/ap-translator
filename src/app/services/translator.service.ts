@@ -76,7 +76,7 @@ export class TranslatorService {
       languageFrom: from,
       languageTo: to
     }
-    return http.post('https://ancient-caverns-12919.herokuapp.com/translate',body);
+    return http.post('https://app-translator-rest.herokuapp.com/translate',body);
   }
 
   protected translateTextRequest(
