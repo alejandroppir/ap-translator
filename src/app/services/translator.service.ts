@@ -30,13 +30,11 @@ export class TranslatorService {
       .filter((e) => !e.originLanguage)
       .forEach((langTo) => {
         observables.push({
-          obs: this.translateTextRequest(
-            this.http,
-            this.getTranslationUrl(
+          obs: this.translateRestRequest(
+            this.http,            
               languageOrigin.languageId,
               langTo.languageId,
               languageOrigin.translation
-            )
           ),
           languageTo: langTo.languageId,
         });
@@ -51,11 +49,10 @@ export class TranslatorService {
         .toPromise()
         .then(
           (res) => {
-            let lines: [] = res[0];
-            lines.forEach((line) => {
-              translatedText = translatedText + line[0];
+            console.log(res)
+              translatedText = res.data;
               translatedRow[0].translation = translatedText;
-            });
+           
           },
           (err) => {
             translatedText = this.ERROR_IN_TRANSLATION;
@@ -69,6 +66,17 @@ export class TranslatorService {
     });
 
     return languages;
+  }
+
+  protected translateRestRequest(
+    http: HttpClient, from:string, to:string, text: string
+  ): Observable<any> {
+    let body = {
+      text: text,
+      languageFrom: from,
+      languageTo: to
+    }
+    return http.post('https://app-translator-rest.herokuapp.com/translate',body);
   }
 
   protected translateTextRequest(
